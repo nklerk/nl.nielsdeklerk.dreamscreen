@@ -51,8 +51,8 @@
         "class": "light",
         "capabilities": ["dim"],
         "images": {
-          "large": "drivers/dreamscreen/assets/images/large.jpg",
-          "small": "drivers/dreamscreen/assets/images/small.jpg"
+          "large": "drivers/dreamscreen/assets/images/large.png",
+          "small": "drivers/dreamscreen/assets/images/small.png"
         },
         "pair": [
             {
