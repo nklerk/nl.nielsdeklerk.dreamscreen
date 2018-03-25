@@ -39,8 +39,9 @@
     }
   },
   "bugs": {
-    "url": "https://bitbucket.org/athom/com.athom.myapp/issues"
+    "url": "https://github.com/nklerk/nl.nielsdeklerk.dreamscreen/issues"
   },
+  "athomForumDiscussionId": 4928,
   "drivers": [
     {
         "id": "dreamscreen",
