@@ -1,0 +1,199 @@
+{
+  "id": "nl.nielsdeklerk.dreamscreen",
+  "version": "0.0.1",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "DreamScreen"
+  },
+  "description": {
+    "en": "Adds support for DreamScreen devices."
+  },
+  "category": [
+    "lights"
+  ],
+  "tags": {
+    "en": [ "Dream", "Screen", "Ambilight" ]
+  },
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Niels de Klerk",
+    "email": "mail@nielsdeklerk.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Kyle Secord"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "NielsdeKlerk"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/athom/com.athom.myapp/issues"
+  },
+  "drivers": [
+    {
+        "id": "dreamscreen",
+        "name": {
+            "en": "DreamScreen"
+        },
+        "class": "light",
+        "capabilities": ["dim"],
+        "images": {
+          "large": "drivers/dreamscreen/assets/images/large.jpg",
+          "small": "drivers/dreamscreen/assets/images/small.jpg"
+        },
+        "pair": [
+            {
+                "id": "list_devices",
+                "template": "list_devices",
+                "navigation": {
+                    "next": "add_devices"
+                }
+            },
+            {
+                "id": "add_devices",
+                "template": "add_devices"
+            }
+        ]
+    }
+  ],
+  "flow": {
+    "actions": [{
+			"id": "set_mode",
+			"title": {
+        "en": "set mode.",
+        "nl": "mode aanpassen."
+			},
+			"hint": {
+				"en": "."
+			},
+			"args": [	{
+        "name": "device",
+        "type": "device",
+        "filter": "driver_id=dreamscreen"
+      },{
+				"name": "value",
+				"type": "dropdown",
+				"values": [
+          {
+            "id": "0",
+            "label": { "en": "Off" }
+				  },
+          {
+            "id": "1",
+            "label": { "en": "Video" }
+          },
+          {
+            "id": "2",
+            "label": { "en": "Audio" }
+          },
+          {
+            "id": "3",
+            "label": { "en": "Ambient" }
+				  }
+        ]
+			}]
+		},{
+			"id": "set_hdmi",
+			"title": {
+        "en": "Set HDMI.",
+        "nl": "HDMI Instellen."
+			},
+			"hint": {
+				"en": "."
+			},
+			"args": [	{
+        "name": "device",
+        "type": "device",
+        "filter": "driver_id=dreamscreen"
+      },{
+				"name": "value",
+				"type": "dropdown",
+				"values": [
+          {
+            "id": "1",
+            "label": { "en": "HDMI 1" }
+				  },
+          {
+            "id": "2",
+            "label": { "en": "HDMI 2" }
+          },
+          {
+            "id": "3",
+            "label": { "en": "HDMI 3" }
+          }
+        ]
+			}]
+		},{
+			"id": "set_ambimode",
+			"title": {
+        "en": "Set Ambient mode.",
+        "nl": "Ambient mode Instellen."
+			},
+			"hint": {
+				"en": "."
+			},
+			"args": [	{
+        "name": "device",
+        "type": "device",
+        "filter": "driver_id=dreamscreen"
+      },{
+				"name": "value",
+				"type": "dropdown",
+				"values": [
+          {
+            "id": "-1",
+            "label": { "en": "Solid Color" }
+          },
+          {
+            "id": "0",
+            "label": { "en": "Random Color" }
+				  },
+          {
+            "id": "1",
+            "label": { "en": "Fireside" }
+          },
+          {
+            "id": "2",
+            "label": { "en": "Twinkle" }
+          },
+          {
+            "id": "3",
+            "label": { "en": "Ocean" }
+          },
+          {
+            "id": "4",
+            "label": { "en": "Rainbow" }
+          },
+          {
+            "id": "5",
+            "label": { "en": "July 4th" }
+          },
+          {
+            "id": "6",
+            "label": { "en": "Holiday" }
+          },
+          {
+            "id": "7",
+            "label": { "en": "Pop" }
+          },
+          {
+            "id": "8",
+            "label": { "en": "Enchanted Forest" }
+          }
+        ]
+			}]
+		}]
+  }
+}

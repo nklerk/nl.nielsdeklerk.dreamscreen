@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+    </head>
+	<style>
+	</style>
+    <body>
+		<div id="hauth" style="height:100%; width:100%;"></div>
+    </body>
+</html>
+
+<script type="text/javascript">
+var auth_dialog;
+var uri="";
+
+Homey.emit( 'get_url', { 'foo': 'bar' }, function( err, oauthurl ){
+	var content = '<h2>Please authenticate using the Honeywell popup.</h2><br>If the popup isn\'t launched then use <a href="'+oauthurl+'" target="_blank">this link.</a>';
+	window.open(oauthurl);
+	document.getElementById('hauth').innerHTML = content;
+});
+
+Homey.on('authenticated', function( message, callback ){
+	console.log ('Authenticated!');
+	document.getElementById( 'hauth' ).style.display = 'none';
+	Homey.emit( 'get_devices', '' );
+    callback( null, ' Authentication Done!' ) // send something back, (err, result) style
+});
+
+
+Homey.setTitle( __('pair.start.title') );
+Homey.on('error', function( errortype, callback ){
+	if (errortype == 'error') {
+		Homey.alert(__('pair.start.error'), 'error');
+		Homey.done();
+	}
+	if (errortype == 'nosettings') {
+		Homey.alert(__('pair.start.nosettings'), 'error');
+		Homey.done();
+	}
+	if (errortype == 'notauthorized') {
+		Homey.alert(__('pair.start.notauthorized'), 'error');
+		Homey.done();
+	}
+})
+
+Homey.on('continue', function( success, callback ){
+		Homey.showView('list_devices');
+})
+
+function saveSettings () {
+	// variables
+	var inputUsername = document.getElementById( 'username' ).value;
+	var inputPassword = document.getElementById( 'password' ).value;
+	// If both values are filled in
+	if (inputUsername != '' && inputPassword != '') {
+		// Build data array
+		var data = {
+			username: inputUsername,
+			password: inputPassword
+		};
+		// Continue to back-end, pass along data
+		Homey.emit( 'get_devices', data );
+	} else {
+		// Give error, username/password required
+		Homey.alert(__('pair.start.required'), 'error');
+		Homey.done();
+	}
+}
+
+
+
