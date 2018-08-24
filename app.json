@@ -1,6 +1,6 @@
 {
   "id": "nl.nielsdeklerk.dreamscreen",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "name": {
@@ -9,11 +9,9 @@
   "description": {
     "en": "Adds support for DreamScreen devices."
   },
-  "category": [
-    "lights"
-  ],
+  "category": ["lights"],
   "tags": {
-    "en": [ "Dream", "Screen", "Ambilight" ]
+    "en": ["Dream", "Screen", "Ambilight"]
   },
   "permissions": [],
   "images": {
@@ -42,159 +40,173 @@
     "url": "https://github.com/nklerk/nl.nielsdeklerk.dreamscreen/issues"
   },
   "athomForumDiscussionId": 4928,
+  "homeyCommunityTopicId": 146,
   "drivers": [
     {
-        "id": "dreamscreen",
-        "name": {
-            "en": "DreamScreen"
+      "id": "dreamscreen",
+      "name": {
+        "en": "DreamScreen"
+      },
+      "class": "light",
+      "capabilities": ["dim"],
+      "images": {
+        "large": "drivers/dreamscreen/assets/images/large.png",
+        "small": "drivers/dreamscreen/assets/images/small.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
         },
-        "class": "light",
-        "capabilities": ["dim"],
-        "images": {
-          "large": "drivers/dreamscreen/assets/images/large.png",
-          "small": "drivers/dreamscreen/assets/images/small.png"
-        },
-        "pair": [
-            {
-                "id": "list_devices",
-                "template": "list_devices",
-                "navigation": {
-                    "next": "add_devices"
-                }
-            },
-            {
-                "id": "add_devices",
-                "template": "add_devices"
-            }
-        ]
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ]
     }
   ],
   "flow": {
-    "actions": [{
-			"id": "set_mode",
-			"title": {
-        "en": "set mode.",
-        "nl": "mode aanpassen."
-			},
-			"hint": {
-				"en": "."
-			},
-			"args": [	{
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=dreamscreen"
-      },{
-				"name": "value",
-				"type": "dropdown",
-				"values": [
+    "actions": [
+      {
+        "id": "set_mode",
+        "title": {
+          "en": "set mode.",
+          "nl": "mode aanpassen."
+        },
+        "hint": {
+          "en": "."
+        },
+        "args": [
           {
-            "id": "0",
-            "label": { "en": "Off" }
-				  },
-          {
-            "id": "1",
-            "label": { "en": "Video" }
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=dreamscreen"
           },
           {
-            "id": "2",
-            "label": { "en": "Audio" }
-          },
-          {
-            "id": "3",
-            "label": { "en": "Ambient" }
-				  }
-        ]
-			}]
-		},{
-			"id": "set_hdmi",
-			"title": {
-        "en": "Set HDMI.",
-        "nl": "HDMI Instellen."
-			},
-			"hint": {
-				"en": "."
-			},
-			"args": [	{
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=dreamscreen"
-      },{
-				"name": "value",
-				"type": "dropdown",
-				"values": [
-          {
-            "id": "1",
-            "label": { "en": "HDMI 1" }
-				  },
-          {
-            "id": "2",
-            "label": { "en": "HDMI 2" }
-          },
-          {
-            "id": "3",
-            "label": { "en": "HDMI 3" }
+            "name": "value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": { "en": "Off" }
+              },
+              {
+                "id": "1",
+                "label": { "en": "Video" }
+              },
+              {
+                "id": "2",
+                "label": { "en": "Audio" }
+              },
+              {
+                "id": "3",
+                "label": { "en": "Ambient" }
+              }
+            ]
           }
         ]
-			}]
-		},{
-			"id": "set_ambimode",
-			"title": {
-        "en": "Set Ambient mode.",
-        "nl": "Ambient mode Instellen."
-			},
-			"hint": {
-				"en": "."
-			},
-			"args": [	{
-        "name": "device",
-        "type": "device",
-        "filter": "driver_id=dreamscreen"
-      },{
-				"name": "value",
-				"type": "dropdown",
-				"values": [
+      },
+      {
+        "id": "set_hdmi",
+        "title": {
+          "en": "Set HDMI.",
+          "nl": "HDMI Instellen."
+        },
+        "hint": {
+          "en": "."
+        },
+        "args": [
           {
-            "id": "-1",
-            "label": { "en": "Solid Color" }
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=dreamscreen"
           },
           {
-            "id": "0",
-            "label": { "en": "Random Color" }
-				  },
-          {
-            "id": "1",
-            "label": { "en": "Fireside" }
-          },
-          {
-            "id": "2",
-            "label": { "en": "Twinkle" }
-          },
-          {
-            "id": "3",
-            "label": { "en": "Ocean" }
-          },
-          {
-            "id": "4",
-            "label": { "en": "Rainbow" }
-          },
-          {
-            "id": "5",
-            "label": { "en": "July 4th" }
-          },
-          {
-            "id": "6",
-            "label": { "en": "Holiday" }
-          },
-          {
-            "id": "7",
-            "label": { "en": "Pop" }
-          },
-          {
-            "id": "8",
-            "label": { "en": "Enchanted Forest" }
+            "name": "value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": { "en": "HDMI 1" }
+              },
+              {
+                "id": "2",
+                "label": { "en": "HDMI 2" }
+              },
+              {
+                "id": "3",
+                "label": { "en": "HDMI 3" }
+              }
+            ]
           }
         ]
-			}]
-		}]
+      },
+      {
+        "id": "set_ambimode",
+        "title": {
+          "en": "Set Ambient mode.",
+          "nl": "Ambient mode Instellen."
+        },
+        "hint": {
+          "en": "."
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=dreamscreen"
+          },
+          {
+            "name": "value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "-1",
+                "label": { "en": "Solid Color" }
+              },
+              {
+                "id": "0",
+                "label": { "en": "Random Color" }
+              },
+              {
+                "id": "1",
+                "label": { "en": "Fireside" }
+              },
+              {
+                "id": "2",
+                "label": { "en": "Twinkle" }
+              },
+              {
+                "id": "3",
+                "label": { "en": "Ocean" }
+              },
+              {
+                "id": "4",
+                "label": { "en": "Rainbow" }
+              },
+              {
+                "id": "5",
+                "label": { "en": "July 4th" }
+              },
+              {
+                "id": "6",
+                "label": { "en": "Holiday" }
+              },
+              {
+                "id": "7",
+                "label": { "en": "Pop" }
+              },
+              {
+                "id": "8",
+                "label": { "en": "Enchanted Forest" }
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
