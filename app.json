@@ -1,6 +1,6 @@
 {
   "id": "nl.nielsdeklerk.dreamscreen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "name": {
@@ -40,7 +40,7 @@
     "url": "https://github.com/nklerk/nl.nielsdeklerk.dreamscreen/issues"
   },
   "athomForumDiscussionId": 4928,
-  "homeyCommunityTopicId": 146,
+  "homeyCommunityTopicId": 147,
   "drivers": [
     {
       "id": "dreamscreen",
