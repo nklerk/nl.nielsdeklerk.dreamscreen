@@ -1,6 +1,6 @@
 {
   "id": "nl.nielsdeklerk.dreamscreen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": ">=1.5.0",
   "sdk": 2,
   "name": {
@@ -134,15 +134,15 @@
             "type": "dropdown",
             "values": [
               {
-                "id": "1",
+                "id": "0",
                 "label": { "en": "HDMI 1" }
               },
               {
-                "id": "2",
+                "id": "1",
                 "label": { "en": "HDMI 2" }
               },
               {
-                "id": "3",
+                "id": "2",
                 "label": { "en": "HDMI 3" }
               }
             ]
