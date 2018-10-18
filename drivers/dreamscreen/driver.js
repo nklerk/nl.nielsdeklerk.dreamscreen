@@ -7,40 +7,12 @@ const DreamscreenClient = require("dreamscreen-node").Client;
 const client = new DreamscreenClient();
 
 client.on("listening", function() {
-  //var address = client.address();
   console.log("==>	Started DreamScreen listening");
 });
 
 client.init();
 
 // Functions...
-
-/*
-function getPowerState(deviceId) {
-  console.log("== Controller requested PowerState of: " + deviceId);
-  if (client.light(deviceId).mode == 0) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function getBrightness(deviceId) {
-  console.log("== Controller requested Brightness of: " + deviceId);
-  return client.light(deviceId).brightness;
-}
-
-
-function setPowerState(deviceId, value) {
-  console.log("== Controller requested to set the PowerState of: " + deviceId + " to " + value);
-  if (value === "false") {
-    setMode(deviceId, 0);
-  } else {
-    setMode(deviceId, 3);
-  }
-}
-*/
-
 function setMode(deviceId, value) {
   console.log("== Controller requested to set the mode of: " + deviceId + " to " + value);
   client.light(deviceId).setMode(value, function(err) {
