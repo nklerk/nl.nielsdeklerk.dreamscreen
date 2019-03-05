@@ -31,42 +31,54 @@ module.exports.getMode = getMode;
 
 function setBrightness(deviceId, value) {
   console.log("== Controller requested to set the brightness of: " + deviceId + " to " + value);
-  client.light(deviceId).setBrightness(parseInt(value, 10), function(err) {
-    if (err) {
-      console.log(`${client.light(deviceId).name} set Brightness ${value} failed`);
-    }
-  });
+  try {
+    client.light(deviceId).setBrightness(parseInt(value, 10), function(err) {
+      if (err) {
+        console.log(`${client.light(deviceId).name} set Brightness ${value} failed`);
+      }
+    });
+  } catch (e) {
+    console.log("ERROR in function");
+  }
 }
 
 function setInput(deviceId, value) {
   console.log("== Controller requested to set the input of: " + deviceId + " to " + value);
-  client.light(deviceId).setHdmiInput(value, function(err) {
-    if (err) {
-      console.log(`${client.light(deviceId).name} set Input ${value} failed`);
-    }
-  });
+  try {
+    client.light(deviceId).setHdmiInput(value, function(err) {
+      if (err) {
+        console.log(`${client.light(deviceId).name} set Input ${value} failed`);
+      }
+    });
+  } catch (e) {
+    console.log("ERROR in function");
+  }
 }
 
 function setAmbiMode(deviceId, value) {
   console.log("== Controller requested to set the ambient mode of: " + deviceId + " to " + value);
   value = parseInt(value, 10);
-  if (value < 0) {
-    client.light(deviceId).setAmbientModeType(0, function(err) {
-      if (err) {
-        console.log(`${client.light(deviceId).name} set Ambient Mode Type ${value} failed`);
-      }
-    });
-  } else {
-    client.light(deviceId).setAmbientModeType(1, function(err) {
-      if (err) {
-        console.log(`${client.light(deviceId).name} set Ambient Mode Type ${value} failed`);
-      }
-    });
-    client.light(deviceId).setAmbientShow(value, function(err) {
-      if (err) {
-        console.log(`${client.light(deviceId).name} set Ambient Show ${value} failed`);
-      }
-    });
+  try {
+    if (value < 0) {
+      client.light(deviceId).setAmbientModeType(0, function(err) {
+        if (err) {
+          console.log(`${client.light(deviceId).name} set Ambient Mode Type ${value} failed`);
+        }
+      });
+    } else {
+      client.light(deviceId).setAmbientModeType(1, function(err) {
+        if (err) {
+          console.log(`${client.light(deviceId).name} set Ambient Mode Type ${value} failed`);
+        }
+      });
+      client.light(deviceId).setAmbientShow(value, function(err) {
+        if (err) {
+          console.log(`${client.light(deviceId).name} set Ambient Show ${value} failed`);
+        }
+      });
+    }
+  } catch (e) {
+    console.log("ERROR in function");
   }
 }
 

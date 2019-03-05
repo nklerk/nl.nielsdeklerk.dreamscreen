@@ -30,6 +30,27 @@ class DsDevice extends Homey.Device {
       return Promise.resolve();
     });
 
+    this.registerCapabilityListener("set_mode", async value => {
+      this._driver.setMode(this._id, parseInt(value, 10));
+      return true;
+    });
+    this.registerCapabilityListener("set_hdmi", async value => {
+      this._driver.setInput(this._id, parseInt(value, 10));
+      return true;
+    });
+    this.registerCapabilityListener("set_ambimode", async value => {
+      this._driver.setAmbiMode(this._id, parseInt(value, 10));
+      return true;
+    });
+    this.registerCapabilityListener("onoff", async value => {
+      if (value) {
+        this._driver.setMode(this._id, 3);
+      } else {
+        this._driver.setMode(this._id, 0);
+      }
+      return true;
+    });
+
     new Homey.FlowCardAction("set_mode").register().registerRunListener(args => {
       this._driver.setMode(args.device._id, parseInt(args.value, 10));
       return true;

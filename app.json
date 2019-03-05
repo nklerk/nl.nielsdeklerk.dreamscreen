@@ -1,7 +1,7 @@
 {
   "id": "nl.nielsdeklerk.dreamscreen",
-  "version": "1.0.2",
-  "compatibility": ">=1.5.0",
+  "version": "1.1.0",
+  "compatibility": ">=2.0.0",
   "sdk": 2,
   "name": {
     "en": "DreamScreen"
@@ -46,6 +46,106 @@
   },
   "athomForumDiscussionId": 4928,
   "homeyCommunityTopicId": 147,
+  "capabilities": {
+    "set_hdmi": {
+      "type": "enum",
+      "title": {
+        "en": "HDMI"
+      },
+      "getable": true,
+      "setable": true,
+      "values": [
+        {
+          "id": "0",
+          "title": { "en": "HDMI 1" }
+        },
+        {
+          "id": "1",
+          "title": { "en": "HDMI 2" }
+        },
+        {
+          "id": "2",
+          "title": { "en": "HDMI 3" }
+        }
+      ]
+    },
+    "set_mode": {
+      "title": {
+        "en": "Mode"
+      },
+      "type": "enum",
+      "getable": true,
+      "setable": true,
+      "values": [
+        {
+          "id": "0",
+          "title": { "en": "Off" }
+        },
+        {
+          "id": "1",
+          "title": { "en": "Video" }
+        },
+        {
+          "id": "2",
+          "title": { "en": "Audio" }
+        },
+        {
+          "id": "3",
+          "title": { "en": "Ambient" }
+        }
+      ]
+    },
+    "set_ambimode": {
+      "type": "enum",
+      "title": {
+        "en": "Ambient Mode"
+      },
+      "getable": true,
+      "setable": true,
+      "values": [
+        {
+          "id": "-1",
+          "title": { "en": "Solid Color" }
+        },
+        {
+          "id": "0",
+          "title": { "en": "Random Color" }
+        },
+        {
+          "id": "1",
+          "title": { "en": "Fireside" }
+        },
+        {
+          "id": "2",
+          "title": { "en": "Twinkle" }
+        },
+        {
+          "id": "3",
+          "title": { "en": "Ocean" }
+        },
+        {
+          "id": "4",
+          "title": { "en": "Rainbow" }
+        },
+        {
+          "id": "5",
+          "title": { "en": "July 4th" }
+        },
+        {
+          "id": "6",
+          "title": { "en": "Holiday" }
+        },
+        {
+          "id": "7",
+          "title": { "en": "Pop" }
+        },
+        {
+          "id": "8",
+          "title": { "en": "Enchanted Forest" }
+        }
+      ]
+    }
+  },
   "drivers": [
     {
       "id": "dreamscreen",
@@ -53,7 +153,7 @@
         "en": "DreamScreen"
       },
       "class": "light",
-      "capabilities": ["dim"],
+      "capabilities": ["onoff", "dim", "set_hdmi", "set_mode", "set_ambimode"],
       "images": {
         "large": "drivers/dreamscreen/assets/images/large.png",
         "small": "drivers/dreamscreen/assets/images/small.png"

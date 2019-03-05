@@ -17,6 +17,10 @@ Fully controll Inputs, modes, colors and ambiance.
 - [Official DreamScreen website](https://www.dreamscreentv.com/)
 - [DreamScreen Shop](https://www.dreamscreentv.com/shop/)
 
+## Version 1.1.0
+
+- Now supports using the homey app to set HDMI, modes, on/off.
+
 ## Version 1.0.2
 
 - Updated dreamscreen-node @0.0.3 to @0.0.4
