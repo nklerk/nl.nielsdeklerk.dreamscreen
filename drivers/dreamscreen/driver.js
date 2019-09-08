@@ -1,5 +1,4 @@
 "use strict";
-
 const Homey = require("homey");
 /* global Homey, module */
 
@@ -15,11 +14,15 @@ client.init();
 // Functions...
 function setMode(deviceId, value) {
   console.log("== Controller requested to set the mode of: " + deviceId + " to " + value);
-  client.light(deviceId).setMode(value, function(err) {
-    if (err) {
-      console.log(`${client.light(deviceId).name} set Mode ${value} failed`);
-    }
-  });
+  try {
+    client.light(deviceId).setMode(value, function(err) {
+      if (err) {
+        console.log(`${client.light(deviceId).name} set Mode ${value} failed`);
+      }
+    });
+  } catch (e) {
+    console.log("ERROR in function, setMode");
+  }
 }
 module.exports.setMode = setMode;
 
@@ -38,7 +41,7 @@ function setBrightness(deviceId, value) {
       }
     });
   } catch (e) {
-    console.log("ERROR in function");
+    console.log("ERROR in function, setBrightness");
   }
 }
 
@@ -130,5 +133,9 @@ class MyDriver extends Homey.Driver {
   setAmbiMode(deviceId, value) {
     setAmbiMode(deviceId, value);
   }
+  getDevice(deviceId) {
+    return client.light(deviceId);
+  }
 }
+
 module.exports = MyDriver;

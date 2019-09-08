@@ -4,6 +4,44 @@ const Homey = require("homey");
 /* global Homey, module */
 
 class DsDevice extends Homey.Device {
+  connectDriver(self) {
+    if (!self) {
+      self = this;
+    }
+    self._device = self._driver.getDevice(self._id);
+    if (!self._device) {
+      console.log("WARNING in connectDriver, Light not yet discovered? retry in 2 Seconds.");
+      setTimeout(self.connectDriver, 2000, self);
+    } else {
+      console.log(`DRIVER GOT: ${self._device}`);
+      self._device.client.on("light-updated", light => {
+        if (light.brightness) {
+          self.setCapabilityValue("dim", light.brightness, () => {});
+          console.log(`"dim", ${light.brightness}`);
+        }
+        if (light.mode) {
+          self.setCapabilityValue("set_mode", light.mode, () => {});
+          console.log(`"set_mode", ${light.mode}`);
+          self.setCapabilityValue("onoff", true, () => {});
+          console.log(`"onoff", true`);
+        } else {
+          self.setCapabilityValue("set_mode", 0, () => {});
+          console.log(`"set_mode", 0`);
+          self.setCapabilityValue("onoff", false, () => {});
+          console.log(`"onoff", false`);
+        }
+        if (light.ambientShow) {
+          self.setCapabilityValue("set_ambimode", light.ambientShow, () => {});
+          console.log(`"set_ambimode", ${light.ambientShow}`);
+        }
+        if (light.hdmiInput) {
+          self.setCapabilityValue("set_hdmi", light.hdmiInput, () => {});
+          console.log(`"set_hdmi", ${light.hdmiInput}`);
+        }
+      });
+    }
+  }
+
   onInit() {
     this._data = this.getData();
     this._id = this._data.id;
@@ -15,8 +53,6 @@ class DsDevice extends Homey.Device {
     this._driver = this.getDriver();
     this._name = this.getName();
     this._class = this.getClass();
-
-    this.log("Loaded Device_id", this._id);
 
     this.registerCapabilityListener("dim", (value, opts) => {
       if (value === 0 && this._driver.getMode(this._id) > 0) {
@@ -52,6 +88,7 @@ class DsDevice extends Homey.Device {
     });
 
     new Homey.FlowCardAction("set_mode").register().registerRunListener(args => {
+      console.log("SETTING MODE>>>>>");
       this._driver.setMode(args.device._id, parseInt(args.value, 10));
       return true;
     });
@@ -65,6 +102,10 @@ class DsDevice extends Homey.Device {
       this._driver.setAmbiMode(args.device._id, parseInt(args.value, 10));
       return true;
     });
+
+    console.log("ZZZZZZZZZZZZZZZZ");
+    this.log("Loaded Device_id", this._id);
+    this.connectDriver();
   }
 
   onAdded() {
