@@ -16,7 +16,7 @@ class DsDevice extends Homey.Device {
       console.log(`DRIVER GOT: ${self._device}`);
       self._device.client.on("light-updated", light => {
         if (light.brightness) {
-          self.setCapabilityValue("dim", light.brightness, () => {});
+          self.setCapabilityValue("dim", light.brightness / 100, () => {}); // 0-100 -> 0.00-1.00
           console.log(`"dim", ${light.brightness}`);
         }
         if (light.mode) {
@@ -103,7 +103,6 @@ class DsDevice extends Homey.Device {
       return true;
     });
 
-    console.log("ZZZZZZZZZZZZZZZZ");
     this.log("Loaded Device_id", this._id);
     this.connectDriver();
   }

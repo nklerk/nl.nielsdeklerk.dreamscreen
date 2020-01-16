@@ -134,7 +134,12 @@ class MyDriver extends Homey.Driver {
     setAmbiMode(deviceId, value);
   }
   getDevice(deviceId) {
-    return client.light(deviceId);
+    if (typeof deviceId !== "string") {
+      console.log("ERROR DEVICEID MUST BE A STRING, GOT: ", deviceId);
+      return false;
+    } else {
+      return client.light(deviceId);
+    }
   }
 }
 
