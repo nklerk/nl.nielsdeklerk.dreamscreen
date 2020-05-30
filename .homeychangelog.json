@@ -1,0 +1,17 @@
+{
+  "1.0.2": {
+    "en": "Updated dreamscreen-node @0.0.3 to @0.0.4"
+  },
+  "1.1.0": {
+    "en": "Now supports using the homey app to set HDMI, modes, on/off."
+  },
+  "1.2.0": {
+    "en": "Bugfix, crash that happend when device was offline."
+  },
+  "1.2.1": {
+    "en": "Bugfix, some crashes happened because of ileagal device identifiers."
+  },
+  "1.2.2": {
+    "en": "Added logging for weird crashes on identifiers."
+  }
+}
